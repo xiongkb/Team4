@@ -45,22 +45,34 @@ $(document).ready(function(){
         queryURL = `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${buttonPressed}&inputtype=textquery&type=restaurant&key=${apiKey}`
         // console.log($(this).val());
         restaurantAPICall(queryURL);
-        secondqueryURL = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${tempPlaceID}&fields=adr_address,formatted_address,geometry,icon,name,permanently_closed,photo,plus_code,type,url,utc_offset,vicinity&key=${apiKey}`
-        setTimeout(function(){placeDetailCall(secondqueryURL)},1000);
+    
+        // secondqueryURL = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${tempPlaceID}&fields=adr_address,formatted_address,geometry,icon,name,permanently_closed,photo,plus_code,type,url,utc_offset,vicinity&key=${apiKey}`
+        // setTimeout(async function(){
+        //     await anotherFunction
+        // },1000);
     });
 
+    var anotherFunction = function(param){
+        secondqueryURL = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${param}&fields=adr_address,formatted_address,geometry,icon,name,permanently_closed,photo,plus_code,type,url,utc_offset,vicinity&key=${apiKey}`
+        placeDetailCall(secondqueryURL);
+        console.log(secondqueryURL)
+    }
 
     // 2nd API function for restaurants
-    var restaurantAPICall = function(queryURL){
+    var restaurantAPICall =  async function(queryURL){
         var settings = {
             "url": queryURL,
             "method": "GET",
         }
 
-        $.ajax(settings).done(function (response) {
+          await  $.ajax(settings).done(function (response) {
             console.log(response);
             tempPlaceID = response.candidates[0].place_id;
+
         });
+        
+        anotherFunction(tempPlaceID)
+        
     }
 
     var placeDetailCall = function(secondqueryURL){
