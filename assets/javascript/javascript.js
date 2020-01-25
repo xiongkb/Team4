@@ -107,10 +107,12 @@ $(document).ready(function(){
                     a.attr("href", apiURL);
                     a.attr("class", "food-name")
                     a.append(foodTitle);
+                    var h4 = $("<h4>");
+                    h4.append(a);
                     var image = $("<img>");
                     image.attr("src", response.hits[rNum].recipe.image);
                     image.attr("class", "food-image");
-                    newDiv.append(a);
+                    newDiv.append(h4);
                     newDiv.append(image);
                     $(".results").prepend(newDiv);
 
