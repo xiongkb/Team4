@@ -29,8 +29,8 @@ $(document).ready(function(){
         tempStr = ingredArray.toString();
         tempStr = tempStr.replace(",","+");
         // console.log(tempStr)
-        appId = process.env.edamamAppID;
-        appKey = proncess.env.edamamApiKey
+        appId = "e7e14c99";
+        appKey = "8b305785d6e489018ccfd57f33064460";
         queryURL = `https://api.edamam.com/search?q=${tempStr}&app_id=${appId}&app_key=${appKey}`;
         makeAPICall(queryURL);
     });
@@ -81,30 +81,43 @@ $(document).ready(function(){
 
         $.ajax(settings).done(function (response) {
             var recipeNums = [];
+            var foodTitle;
+            var apiURL;
+            $(".results").empty();
+            displayFood();
+            function displayFood() {
+                for (var i = 0; i < 3; i++) {
+                    var rNum = -1;
+                    
+                    while(rNum === -1) {
+                        var tempNum = Math.floor(Math.random() * 9);
 
-            for (var i = 0; i < 4; i++) {
-                var rNum = -1;
-                
-                while(rNum === -1) {
-                    var tempNum = Math.floor(Math.random() * 9);
-
-                    if(!recipeNums.includes(tempNum)) {
-                        rNum = tempNum;
-                        recipeNums.push(tempNum);
+                        if(!recipeNums.includes(tempNum)) {
+                            rNum = tempNum;
+                            recipeNums.push(tempNum);
+                        }
                     }
-                }
 
-                foodTitle = response.hits[rNum].recipe.label;
-                apiURL = response.hits[rNum].recipe.url;
+                    foodTitle = response.hits[rNum].recipe.label;
+                    apiURL = response.hits[rNum].recipe.url;
 
-                newDiv = $("<div>");
-                newDiv.html(`<a href=${apiURL}>` + foodTitle + '</a>');
-                var image = $("<img>");
-                image.attr("src", response.hits[rNum].recipe.image);
-                newDiv.append(image);
-                $(".results").append(newDiv);
-                console.log(recipeNums);
-            };
+                    var newDiv = $("<div>");
+                    newDiv.attr("class", "recipe-display");
+                    var a = $("<a>");
+                    a.attr("href", apiURL);
+                    a.attr("class", "food-name")
+                    a.append(foodTitle);
+                    var image = $("<img>");
+                    image.attr("src", response.hits[rNum].recipe.image);
+                    image.attr("class", "food-image");
+                    newDiv.append(a);
+                    newDiv.append(image);
+                    $(".results").prepend(newDiv);
+
+                    console.log(rNum);
+                    console.log(response);
+                };
+            }
             
         });
     }      
