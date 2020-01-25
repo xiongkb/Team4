@@ -2,7 +2,9 @@ $(document).ready(function(){
     // global varibles to be used
     var queryURL;
     var ingredArray = [];
-    var tempPlaceID;
+    var tempPlaceID ="";
+
+
 
     $("#addButton").on("click",function(event){
         event.preventDefault();
@@ -38,12 +40,13 @@ $(document).ready(function(){
     // Create function for buttons regarding cuisine
     $(".cuisineButton").on("click",function(event){
         console.log(this);
-        buttonPressed = $(".cuisineButton").val();
-        apiKey = process.env.googleApiKey;
+        buttonPressed = $(this).val();
+        apiKey = "";
         queryURL = `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${buttonPressed}&inputtype=textquery&type=restaurant&key=${apiKey}`
+        // console.log($(this).val());
         restaurantAPICall(queryURL);
-        queryURL = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${tempPlaceID}&fields=name,rating,formatted_phone_number&key=${apiKey}`
-        placeDetailCall(queryURL);
+        secondqueryURL = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${tempPlaceID}&fields=adr_address,formatted_address,geometry,icon,name,permanently_closed,photo,plus_code,type,url,utc_offset,vicinity&key=${apiKey}`
+        setTimeout(function(){placeDetailCall(secondqueryURL)},1000);
     });
 
 
@@ -60,14 +63,29 @@ $(document).ready(function(){
         });
     }
 
-    var placeDetailCall = function(queryURL){
+    var placeDetailCall = function(secondqueryURL){
         var settings = {
-            "url": queryURL,
+            "url": secondqueryURL,
             "method": "GET",
         }
         $.ajax(settings).done(function (response) {
             console.log(response);
             // Add response code here
+            name = response.result.name;
+            address = response.result.formatted_address;
+            mapURL = response.result.url;
+
+            newDiv = $("<div>");
+            newDiv.html(`
+                <h2>${name}</h2>
+                <br>
+                <h3>${address}</h3>
+                <br>
+                <h3><a href=${mapURL}>Check out the location!</a></h3>
+                <br>
+            `);
+            $(".results").html(newDiv);
+
         });
     }
 
