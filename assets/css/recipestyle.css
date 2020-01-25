@@ -30,4 +30,10 @@
     font-size:12px;
     padding:10px 16px;
     font-weight: bold; 
-}  
+}
+
+.recipe-display, .food-name, .food-image {
+    float: left;
+    margin: auto;
+    padding: 10px;
+}
