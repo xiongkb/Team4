@@ -78,10 +78,14 @@ $(document).ready(function(){
             newDiv = $("<div>");
             newDiv.html(`
                 <h2>${name}</h2>
+                <br>
                 <h3>${address}</h3>
+                <br>
                 <h3><a href=${mapURL}>Check out the location!</a></h3>
+                <br>
             `);
             $(".results").html(newDiv);
+
         });
     }
 
