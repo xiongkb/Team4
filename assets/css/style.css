@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,800');
+
+html, body {
+  height: 100%;
+  min-height: 18em;
+}
+
+.recipe-side {
+  background-image: url("../images/recipefaded.jpg");
+}
+
+.restaurant-side {
+  background-image: url("../images/restaurantfaded.jpg");
+}
+
+.split-pane {
+  float: left;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  border-right: 1px solid black;
+  padding-top: 1em;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  height: 50%;
+  min-height: 9em;
+  font-size: 2em;
+  color: black;
+  font-family: 'Open Sans', sans-serif;
+  font-weight:300;
+}
+
+@media(min-width: 500px) {
+  .split-pane {
+    padding-top: 2em;
+    height: 100%;
+  }
+}
+
+.split-pane > div {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  text-align: center;
+}
+
+.split-pane > div .text-content {
+  line-height: 1.6em;
+  margin-bottom: 1em;
+}
+
+.split-pane > div .text-content .big {
+  font-size: 2em;
+}
+
+.split-pane button, .split-pane a.button {
+  font-family: 'Open Sans', sans-serif;
+  font-weight:800;
+  background: none;
+  border: 1px solid black;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  width: 15em;
+  padding: 0.7em;
+  font-size: 0.5em;
+  text-decoration: none;
+  color: black;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.split-pane button:hover, .split-pane a.button:hover {
+  text-decoration: none;
+  background-color: black;
+  border-color: white;
+  cursor: pointer;
+  color: white;
+}
+
+.big {
+  font-size: 2em;
+  font-weight: 800;
+}
+
+.bold {
+	text-transform: uppercase;
+}
