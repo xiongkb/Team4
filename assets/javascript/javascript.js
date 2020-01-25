@@ -7,8 +7,13 @@ $(document).ready(function(){
     $("#addButton").on("click",function(event){
         event.preventDefault();
         userSearch = $("#ingredient").val();
-        if(ingredArray.includes(userSearch)){
-            alert("This is already included!")
+        if (userSearch.search(/[^a-zA-Z]+/) > -1) {
+            $("#errorMsg").html("Please enter only alphabetical letters.");
+        }
+
+        if (ingredArray.includes(userSearch)) {
+            $("#errorMsg").html("This is already included!")
+
         } else {
             ingredArray.push(userSearch);
         }
