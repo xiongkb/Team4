@@ -41,7 +41,7 @@ $(document).ready(function(){
     $(".cuisineButton").on("click",function(event){
         console.log(this);
         buttonPressed = $(this).val();
-        apiKey = "AIzaSyDjO7VnG8faKTEwJNatbvRRZfJyuBxbNEk";
+        apiKey = "";
         queryURL = `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${buttonPressed}&inputtype=textquery&type=restaurant&key=${apiKey}`
         // console.log($(this).val());
         restaurantAPICall(queryURL);
