@@ -1,29 +1,25 @@
+body {
+    background-image: url(../images/restaurantfaded.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
 .container {
-    text-align: center;
-    background-color: lightblue;   
+    text-align: center; 
 }
 
-.title{
-    font-size:60px;
-    color:black;
-    font-weight: 100;
+.btn {
+    background: #2b2b2b;
+    color: #dadee3;
+    margin: 5px;
 }
-
-.user-input{
-    size:30px;
-    border:3px solid black;
-    border-bottom-left-radius:10px;
-    border-bottom-right-radius:10px;
-    padding:20px;
+.back-btn {
+    float: right;
 }
-
-#cuisineButton{
-    background-color:white;
-    border:2px solid black;
-    color:black;
-    text-align:center;
-    display:inline-block;
-    font-size:12px;
-    padding:10px 16px;
-    font-weight: bold; 
-}  
+.btn:hover {
+    background: #dadee3;
+    color: #2b2b2b;
+}
+.btn:focus {
+    background: #a3aeba;
+    color: #2b2b2b;
+}
