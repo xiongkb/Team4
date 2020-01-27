@@ -23,3 +23,10 @@ body {
     background: #a3aeba;
     color: #2b2b2b;
 }
+.user-input {
+    margin-top: 100px;
+}
+.resDiv {
+    background: #b5bec7;
+    border: #2b2b2b 2px solid;
+}

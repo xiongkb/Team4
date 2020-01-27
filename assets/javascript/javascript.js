@@ -77,6 +77,7 @@ $(document).ready(function () {
             mapURL = response.result.url;
 
             newDiv = $("<div>");
+            newDiv.attr("class", "resDiv");
             newDiv.html(`
                 <h3>${name}</h3>
                 <br>
