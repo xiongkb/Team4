@@ -44,11 +44,36 @@ body {
 }
 a {
     font-size: 24px;
-    color: #dadee3;
+    color: black;
     text-decoration: underline;
 }
-.input-field:focus {
-    border-bottom: 1px solid #000;
-    box-shadow: 0 1px 0 0 #000;
-    -webkit-box-shadow: 0 1px 0 0 #000
+.input-field input[type=text]:focus + label, .materialize-textarea:focus:not([readonly]) + label {
+    color:  #61686F !important;
+   }
+
+.input-field input[type=text]:focus, .materialize-textarea:focus:not([readonly]) {
+    border-bottom: 1px solid  #61686F !important;
+    box-shadow: 0 1px 0 0  #61686F !important;
+}
+
+.input-field input[type=text] + label, .materialize-textarea:not([readonly]) + label {
+    color: #2B2B2B !important;
+}
+
+.input-field input[type=text], .materialize-textarea:not([readonly]) {
+    border-bottom: 1px solid #2B2B2B !important;
+    box-shadow: 0 1px 0 0 #2B2B2B !important;
+}
+
+::-webkit-input-placeholder {
+    color: black;
+}
+
+.addText {
+    margin: 0 auto;
+}
+
+.recipe-display {
+    float: left;
+    margin: 20px;
 }
