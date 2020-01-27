@@ -5,24 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Team 4 - Recipe</title>
-    <!-- bootstrap -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <!-- link to materialize library -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="../assets/css/recipestyle.css">
 </head>
 <body>
     <!-- Banner Div block -->
     <div class="container">
         <div class = "title">
-            <p class="jumbotron title">Recipe Roulette</p>
+            <h1 class="title">Recipe Roulette</p>
         </div>
-        <a class="btn" href="../index.html">BACK</a>
+        <a class="waves-effect btn back-btn" href="../index.html"><i class="material-icons">keyboard_return</i></a>
         <!-- User input field -->
         <div class="user-input">
             <form>
-                <input class="form-group" id="ingredient" placeholder="Enter Ingredient" type="text">
+                <!-- <input class="validate" id="ingredient" placeholder="Enter Ingredient" type="text"> -->
+                <div class="row">
+                    <form class="col s12">
+                      <div class="row">
+                        <div class="input-field col s12">
+                          <input id="ingredient" type="text" class="validate">
+                          <label for="ingredient">Enter Ingredient</label>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+
                 <div id="errorMsg" class="bg-danger"></div>
                 <button class="btn" id = "addButton">Add Ingredient</button>
                 <button class="btn" id = "submitButton">Enter</button>
