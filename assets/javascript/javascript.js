@@ -77,14 +77,11 @@ $(document).ready(function () {
             mapURL = response.result.url;
 
             newDiv = $("<div>");
-            newDiv.attr("class", "resDiv");
+            newDiv.attr("class", "card-content");
             newDiv.html(`
-                <h3>${name}</h3>
-                <br>
-                <h4>${address}</h4>
-                <br>
-                <h4><a href=${mapURL}>Check out the location!</a></h4>
-                <br>
+                <p class="card-title">${name}</p>
+                <p>${address}</p><hr>
+                <p><a href=${mapURL}>Check out the location!</a></p>
             `);
             $(".results").html(newDiv);
 
