@@ -16,6 +16,7 @@ $(document).ready(function () {
         }
         console.log(ingredArray)
         $(".addedIngredients").text(ingredArray);
+        $("#ingredient").val("");           //Resets Ingredient form input
     }
 
     $("#formId").keydown(function (e) {
@@ -33,8 +34,8 @@ $(document).ready(function () {
     // Button to clear
     $("#clearButton").on("click", function (event) {
         event.preventDefault();
-        userSearch = $("#ingredient").val();
         ingredArray = [];
+        $("#ingredient").val("");           //Resets Ingredient form input
         $(".addedIngredients").text(ingredArray);
 
     })
