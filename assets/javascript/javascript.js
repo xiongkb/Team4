@@ -4,22 +4,32 @@ $(document).ready(function () {
     var ingredArray = [];
     var tempPlaceID = "";
 
-    $("#addButton").on("click", function (event) {
-        event.preventDefault();
+    function addFunction(){
         userSearch = $("#ingredient").val();
         if (userSearch.search(/[^a-zA-Z]+/) > -1) {
             $("#errorMsg").html("Please enter only alphabetical letters.");
         }
-
         if (ingredArray.includes(userSearch)) {
             $("#errorMsg").html("This is already included!")
-
         } else {
             ingredArray.push(userSearch);
         }
+        console.log(ingredArray)
         $(".addedIngredients").text(ingredArray);
+    }
 
+    $("#formId").keydown(function (e) {
+        if (e.keyCode == 13) {
+            e.preventDefault();
+            addFunction();
+        }
+    });
+
+    $("#addButton").on("click", function (event) {
+        event.preventDefault();
+        addFunction();
     })
+
     // Button to clear
     $("#clearButton").on("click", function (event) {
         event.preventDefault();
@@ -28,6 +38,7 @@ $(document).ready(function () {
         $(".addedIngredients").text(ingredArray);
 
     })
+    
     // button to submit
     $("#submitButton").on("click", function (event) {
         event.preventDefault();
@@ -66,6 +77,7 @@ $(document).ready(function () {
         anotherFunction(tempPlaceID)
     }
 
+    // Calls the details of returned google search place ID
     var placeDetailCall = function (secondqueryURL) {
         var settings = {
             "url": secondqueryURL,
@@ -88,6 +100,7 @@ $(document).ready(function () {
         });
     }
 
+    // Calls recipes based on array of ingredients using queryURL
     var makeAPICall = function (queryURL) {
         // api call for recipes based on ingredients
         var settings = {
