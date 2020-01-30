@@ -6,7 +6,9 @@ $(document).ready(function () {
 
     function addFunction(){
         userSearch = $("#ingredient").val();
-        if (userSearch.search(/[^a-zA-Z]+/) > -1) {
+        userSearch = userSearch.toLowerCase();
+        userSearch = userSearch.charAt(0).toUpperCase() + userSearch.slice(1);
+        if (userSearch.search(/[^a-zA-Z]+/) > -1 && userSearch.indexOf(' ') <= 0) {
             $("#errorMsg").html("Please enter only alphabetical letters.");
         }
         if (ingredArray.includes(userSearch)) {
@@ -15,7 +17,7 @@ $(document).ready(function () {
             ingredArray.push(userSearch);
         }
         console.log(ingredArray)
-        $(".addedIngredients").text(ingredArray);
+        $(".addedIngredients").text(ingredArray.toString());
         $("#ingredient").val("");           //Resets Ingredient form input
     }
 
