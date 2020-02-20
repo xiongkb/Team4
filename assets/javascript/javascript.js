@@ -72,7 +72,6 @@ $(document).ready(function () {
         buttonPressed = $(this).val();
         /* ENTER GOOGLE PLACES API KEY HERE */
         apiKey = "";
-        
         queryURL = `https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${latitude},${longitude}&radius=1500&type=restaurant&keyword=${buttonPressed}&key=${apiKey}`
         restaurantAPICall(queryURL);
     });
@@ -96,8 +95,12 @@ $(document).ready(function () {
                 tempPlaceID = response.results[randomNumber].place_id;
             } catch (err) { 
                 // console.log(err);
-                console.log("Please ensure the API Key that you are using is set in the query call. This is temporarily a front-end application only.")
-                alert("There was an error in search! Please wait a couple of seconds and try again or attempt another cuisine. Otherwise, please enter your Google Places API Key.");
+                if(apiKey === ""){
+                    alert("Please enter a Google Places API Key");
+                    console.log("Please ensure the API Key that you are using is set in the query call. This is temporarily a front-end application only.")
+                } else {
+                    alert("There was an error in search! Please wait a couple of seconds and try again or attempt another cuisine.");
+                }
             }
             
 
@@ -146,7 +149,7 @@ $(document).ready(function () {
                 displayFood();
             } catch(err) {
                 console.log(err);
-                alert("No recipes found with those ingredients. Please try again!")
+                alert("No recipes found with those ingredients. Please try again!");
             }
             
             function displayFood() {
