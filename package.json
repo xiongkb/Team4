@@ -1,0 +1,22 @@
+{
+  "name": "rrroulette",
+  "version": "1.0.0",
+  "description": "This is the initialization for the restaurant and recipe roulette",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Loganrdj/Team4.git"
+  },
+  "author": "Logan Moss",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Loganrdj/Team4/issues"
+  },
+  "homepage": "https://github.com/Loganrdj/Team4#readme",
+  "dependencies": {
+    "dotenv": "^8.2.0"
+  }
+}

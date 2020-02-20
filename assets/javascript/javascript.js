@@ -1,8 +1,26 @@
+// require("dotenv").config();
+
 $(document).ready(function () {
     // global varibles to be used
     var queryURL;
     var ingredArray = [];
     var tempPlaceID = "";
+    var latitude = "";
+    var longitude = "";
+
+
+    if ("geolocation" in navigator){ //check geolocation available 
+        //try to get user current location using getCurrentPosition() method
+        navigator.geolocation.getCurrentPosition(function(position){ 
+                latitude = position.coords.latitude;
+                longitude = position.coords.longitude;
+                console.log(latitude)
+                console.log(longitude)
+            });
+    }else{
+        alert("Please accept browser location in order for application to work!")
+        console.log("Browser doesn't support geolocation!");
+    }
 
     function addFunction(){
         userSearch = $("#ingredient").val();
@@ -56,13 +74,13 @@ $(document).ready(function () {
     // Create function for buttons regarding cuisine
     $(".cuisineButton").on("click", function (event) {
         buttonPressed = $(this).val();
-        apiKey = "AIzaSyCz_GDmkER2c9zRudHQlCi_oebTOpAJj0Y"; //enter your google apiKey here
-        queryURL = `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${buttonPressed}&inputtype=textquery&type=restaurant&key=${apiKey}`
+        apiKey = "AIzaSyD47FFW33WgN4I6ewIoKosPjFVa_3Hoy8k"; //enter your google apiKey here
+        queryURL = `https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${latitude},${longitude}&radius=1500&type=restaurant&keyword=${buttonPressed}&key=${apiKey}`
         restaurantAPICall(queryURL);
     });
 
     var anotherFunction = function (param) {
-        secondqueryURL = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${param}&fields=adr_address,formatted_address,geometry,icon,name,permanently_closed,photo,plus_code,type,url,utc_offset,vicinity&key=${apiKey}`
+        secondqueryURL = `https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?place_id=${param}&fields=adr_address,formatted_address,geometry,icon,name,permanently_closed,photo,plus_code,type,url,utc_offset,vicinity&key=${apiKey}`
         placeDetailCall(secondqueryURL);
     }
 
@@ -74,7 +92,9 @@ $(document).ready(function () {
         }
 
         await $.ajax(settings).done(function (response) {
-            tempPlaceID = response.candidates[0].place_id;
+            let randomNumber = Math.floor(Math.random() * 15) + 1;
+            console.log(response)
+            tempPlaceID = response.results[randomNumber].place_id;
 
         });
         anotherFunction(tempPlaceID)
@@ -87,6 +107,7 @@ $(document).ready(function () {
             "method": "GET",
         }
         $.ajax(settings).done(function (response) {
+            console.log(response);
             name = response.result.name;
             address = response.result.formatted_address;
             mapURL = response.result.url;
