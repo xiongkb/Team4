@@ -1,5 +1,3 @@
-// require("dotenv").config();
-
 $(document).ready(function () {
     // global varibles to be used
     var queryURL;
@@ -14,6 +12,8 @@ $(document).ready(function () {
             latitude = position.coords.latitude;
             longitude = position.coords.longitude;
         });
+    }else if(!latitude == ""){
+        alert("hello")
     }else{
         alert("Please accept browser location in order for application to work!")
         console.log("Browser doesn't support geolocation!");
@@ -71,7 +71,7 @@ $(document).ready(function () {
     $(".cuisineButton").on("click", function (event) {
         buttonPressed = $(this).val();
         /* ENTER GOOGLE PLACES API KEY HERE */
-        apiKey = ""; //HERE ---------------------------------------------
+        apiKey = "";
         
         queryURL = `https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${latitude},${longitude}&radius=1500&type=restaurant&keyword=${buttonPressed}&key=${apiKey}`
         restaurantAPICall(queryURL);
@@ -96,7 +96,7 @@ $(document).ready(function () {
                 tempPlaceID = response.results[randomNumber].place_id;
             } catch (err) { 
                 console.log(err);
-                alert("There was an error in search! Please wait a couple of seconds and try again or attempt another cuisine.");
+                alert("There was an error in search! Please wait a couple of seconds and try again or attempt another cuisine. Otherwise, please enter your Google Places API Key.");
             }
             
 
