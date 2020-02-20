@@ -9,14 +9,11 @@ $(document).ready(function () {
     var longitude = "";
 
 
-    if ("geolocation" in navigator){ //check geolocation available 
-        //try to get user current location using getCurrentPosition() method
+    if ("geolocation" in navigator){        //check if geolocation is available and try to get user current location
         navigator.geolocation.getCurrentPosition(function(position){ 
-                latitude = position.coords.latitude;
-                longitude = position.coords.longitude;
-                console.log(latitude)
-                console.log(longitude)
-            });
+            latitude = position.coords.latitude;
+            longitude = position.coords.longitude;
+        });
     }else{
         alert("Please accept browser location in order for application to work!")
         console.log("Browser doesn't support geolocation!");
@@ -57,7 +54,6 @@ $(document).ready(function () {
         ingredArray = [];
         $("#ingredient").val("");           //Resets Ingredient form input
         $(".addedIngredients").text(ingredArray);
-
     })
     
     // button to submit
@@ -92,9 +88,15 @@ $(document).ready(function () {
         }
 
         await $.ajax(settings).done(function (response) {
-            let randomNumber = Math.floor(Math.random() * 15) + 1;
+            let randomNumber = (Math.floor(Math.random() * response.results.length)) + 1; //Chooses random restaurant from 1 - 15
             console.log(response)
-            tempPlaceID = response.results[randomNumber].place_id;
+            try{
+                tempPlaceID = response.results[randomNumber].place_id;
+            } catch (err) { 
+                console.log(err);
+                alert("There was an error in search! Please wait a couple of seconds and try again or attempt another cuisine.");
+            }
+            
 
         });
         anotherFunction(tempPlaceID)
