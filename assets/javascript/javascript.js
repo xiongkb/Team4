@@ -142,7 +142,13 @@ $(document).ready(function () {
             var foodTitle;
             var apiURL;
             $(".results").empty();
-            displayFood();
+            try{
+                displayFood();
+            } catch(err) {
+                console.log(err);
+                alert("No recipes found with those ingredients. Please try again!")
+            }
+            
             function displayFood() {
                 for (var i = 0; i < 3; i++) {
                     var rNum = -1;
