@@ -70,7 +70,9 @@ $(document).ready(function () {
     // Create function for buttons regarding cuisine
     $(".cuisineButton").on("click", function (event) {
         buttonPressed = $(this).val();
-        apiKey = ""; //enter your google apiKey here
+        /* ENTER GOOGLE PLACES API KEY HERE */
+        apiKey = ""; //HERE ---------------------------------------------
+        
         queryURL = `https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${latitude},${longitude}&radius=1500&type=restaurant&keyword=${buttonPressed}&key=${apiKey}`
         restaurantAPICall(queryURL);
     });
