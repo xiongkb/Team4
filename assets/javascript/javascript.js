@@ -5,7 +5,9 @@ $(document).ready(function () {
     var tempPlaceID = "";
     var latitude = "";
     var longitude = "";
-
+    var googleApiKey = prompt("Please enter your Google API Key", "APIKEY HERE");
+    
+    
 
     if ("geolocation" in navigator){        //check if geolocation is available and try to get user current location
         navigator.geolocation.getCurrentPosition(function(position){ 
@@ -69,15 +71,19 @@ $(document).ready(function () {
 
     // Create function for buttons regarding cuisine
     $(".cuisineButton").on("click", function (event) {
+        // console.log(googleApiKey)
         buttonPressed = $(this).val();
         /* ENTER GOOGLE PLACES API KEY HERE */
-        apiKey = "";
-        queryURL = `https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${latitude},${longitude}&radius=1500&type=restaurant&keyword=${buttonPressed}&key=${apiKey}`
+        // apiKey = "";
+        // if (googleApiKey != ""){
+        //     apiKey = googleApiKey;
+        // }
+        queryURL = `https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${latitude},${longitude}&radius=1500&type=restaurant&keyword=${buttonPressed}&key=${googleApiKey}`
         restaurantAPICall(queryURL);
     });
 
     var anotherFunction = function (param) {
-        secondqueryURL = `https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?place_id=${param}&fields=adr_address,formatted_address,geometry,icon,name,permanently_closed,photo,plus_code,type,url,utc_offset,vicinity&key=${apiKey}`
+        secondqueryURL = `https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?place_id=${param}&fields=adr_address,formatted_address,geometry,icon,name,permanently_closed,photo,plus_code,type,url,utc_offset,vicinity&key=${googleApiKey}`
         placeDetailCall(secondqueryURL);
     }
 
@@ -95,7 +101,7 @@ $(document).ready(function () {
                 tempPlaceID = response.results[randomNumber].place_id;
             } catch (err) { 
                 // console.log(err);
-                if(apiKey === ""){
+                if(googleApiKey === ""){
                     alert("Please enter a Google Places API Key");
                     console.log("Please ensure the API Key that you are using is set in the query call. This is temporarily a front-end application only.")
                 } else {
