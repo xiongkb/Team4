@@ -5,17 +5,20 @@ $(document).ready(function () {
     var tempPlaceID = "";
     var latitude = "";
     var longitude = "";
-    var googleApiKey = prompt("Please enter your Google API Key", "APIKEY HERE");
-    
+    if(window.location.pathname.endsWith("restaurant.html")){
+        var googleApiKey = prompt("Please enter your Google API Key", "Google API Key here");
+    }
+
+    console.log(window.location.pathname);
     
 
-    if ("geolocation" in navigator){        //check if geolocation is available and try to get user current location
+    if ("geolocation" in navigator && window.location.pathname.endsWith("restaurant.html")){        //check if geolocation is available and try to get user current location
         navigator.geolocation.getCurrentPosition(function(position){ 
             latitude = position.coords.latitude;
             longitude = position.coords.longitude;
         });
-    }else if(!latitude == ""){
-        alert("hello")
+    }else if(!window.location.pathname.endsWith("restaurant.html")){
+        // alert("hello")
     }else{
         alert("Please accept browser location in order for application to work!")
         console.log("Browser doesn't support geolocation!");
