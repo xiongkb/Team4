@@ -108,7 +108,7 @@ $(document).ready(function () {
                     alert("Please enter a Google Places API Key");
                     console.log("Please ensure the API Key that you are using is set in the query call. This is temporarily a front-end application only.")
                 } else {
-                    alert("There was an error in search! Please wait a couple of seconds and try again or attempt another cuisine.");
+                    alert(`There was an error in search! Please wait a couple of seconds and try again or attempt another cuisine. \nError: ${response.error_message}`);
                 }
             }
             
