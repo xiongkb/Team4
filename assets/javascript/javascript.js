@@ -56,7 +56,7 @@ $(document).ready(function () {
     // Create function for buttons regarding cuisine
     $(".cuisineButton").on("click", function (event) {
         buttonPressed = $(this).val();
-        apiKey = "AIzaSyCz_GDmkER2c9zRudHQlCi_oebTOpAJj0Y"; //enter your google apiKey here
+        apiKey = ""; //enter your google apiKey here
         queryURL = `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${buttonPressed}&inputtype=textquery&type=restaurant&key=${apiKey}`
         restaurantAPICall(queryURL);
     });
